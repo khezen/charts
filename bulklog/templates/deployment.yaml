@@ -21,12 +21,6 @@ spec:
       app.kubernetes.io/name: {{ include "bulklog.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
       app.kubernetes.io/version: {{ include "bulklog.appVersion" . }}
-      {{- if .Values.component }}
-      app.kubernetes.io/component: {{ .Values.component }}
-      {{- end}}
-      {{- if .Values.partOf }}
-      app.kubernetes.io/part-of: {{ .Values.partOf }}
-      {{- end}}
   template:
     metadata:
       labels:
@@ -50,11 +44,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /health
+              path: /v1/liveness
               port: http
           readinessProbe:
             httpGet:
-              path: /health
+              path: /v1/readiness
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
