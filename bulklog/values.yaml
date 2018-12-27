@@ -35,13 +35,14 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-redis:
+persistence: |
   enabled: false
-# endpoint: http://redis:6379
-# password: changeme
-# db: 0
+# redis: 
+#   endpoint: http://redis:6379
+#   password: changeme
+#   db: 0
 
-output:
+output: |
   elasticsearch:
     enabled: true
     endpoint: http://elasticsearch-client:9200
@@ -54,47 +55,47 @@ output:
   #   username: elastic
   #   password: changeme
   
-collections:
-- name: logs
-  flush_period: 5 seconds # hours|minutes|seconds|milliseconds
-  retention_period: 45 minutes
-  schemas:
-    log:
-      source: 
-        type: string 
-      level: 
-        type: string
-      message: 
-        type: string
-      request_id: 
-        type: string
-- name: web
-  flush_period: 5 seconds # hours|minutes|seconds|milliseconds
-  retention_period: 45 minutes
-  schemas:
-    trace:
-      source: 
-        type: string
-      request_id: 
-        type: string
-        length: 36
-      client_ip: 
-        type: string
-      host: 
-        type: string
-      path: 
-        type: string
-      method: 
-        type: string
-        max_length: 6
-      request_dump: 
-        type: string
-      status_code: 
-        type: int16
-      response_dump: 
-        type: string
-      response_time_ms: 
-        type: uint32
+collections: |
+  - name: logs
+    flush_period: 5 seconds # hours|minutes|seconds|milliseconds
+    retention_period: 45 minutes
+    schemas:
+      log:
+        source: 
+          type: string 
+        level: 
+          type: string
+        message: 
+          type: string
+        request_id: 
+          type: string
+  - name: web
+    flush_period: 5 seconds # hours|minutes|seconds|milliseconds
+    retention_period: 45 minutes
+    schemas:
+      trace:
+        source: 
+          type: string
+        request_id: 
+          type: string
+          length: 36
+        client_ip: 
+          type: string
+        host: 
+          type: string
+        path: 
+          type: string
+        method: 
+          type: string
+          max_length: 6
+        request_dump: 
+          type: string
+        status_code: 
+          type: int16
+        response_dump: 
+          type: string
+        response_time_ms: 
+          type: uint32
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
