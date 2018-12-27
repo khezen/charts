@@ -1,6 +1,8 @@
+# Cheatsheet
+
 ## create chart
 
-```
+```bash
 helm create mychart
 helm package mychart
 mv mychart-0.1.0.tgz docs
