@@ -19,6 +19,9 @@ service:
   type: ClusterIP
   port: 80
 
+container:
+  port: 5000
+
 ingress:
   enabled: false
   annotations: {}
@@ -31,6 +34,67 @@ ingress:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
+
+redis:
+  enabled: false
+# endpoint: http://localhost:6379
+# password: changeme
+# db: 0
+
+output: 
+  elasticsearch:
+    enabled: true
+    endpoint: http://localhost:9200
+    shards: 1
+  # aws_auth:
+  #   access_key_id: changeme
+  #   secret_access_key: changeme
+  #   region: eu-west-1
+  # basic_auth: 
+  #   username: elastic
+  #   password: changeme
+  
+collections:
+- name: logs
+  flush_period: 5 seconds # hours|minutes|seconds|milliseconds
+  retention_period: 45 minutes
+  schemas:
+    log:
+      source: 
+        type: string 
+      level: 
+        type: string
+      message: 
+        type: string
+      request_id: 
+        type: string
+- name: web
+  flush_period: 5 seconds # hours|minutes|seconds|milliseconds
+  retention_period: 45 minutes
+  schemas:
+    trace:
+      source: 
+        type: string
+      request_id: 
+        type: string
+        length: 36
+      client_ip: 
+        type: string
+      host: 
+        type: string
+      path: 
+        type: string
+      method: 
+        type: string
+        max_length: 6
+      request_dump: 
+        type: string
+      status_code: 
+        type: int16
+      response_dump: 
+        type: string
+      response_time_ms: 
+        type: uint32
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -49,3 +113,5 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+

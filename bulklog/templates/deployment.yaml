@@ -40,7 +40,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 5000
+              containerPort: {{ .Values.container.port }}
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -50,6 +50,16 @@ spec:
             httpGet:
               path: /v1/readiness
               port: http
+          env:
+            - name: CONFIG_PATH
+              value: /etc/{{ include "bulklog.fullname" . }}
+          volumeMounts:
+            - name: config
+              mountPath: /etc/{{ include "bulklog.fullname" . }}
+          volumes:
+            - name: config
+              secret:
+                secretName: {{ include "bulklog.fullname" . }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
