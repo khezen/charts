@@ -1,9 +1,17 @@
 {{/* vim: set filetype=mustache: */}}
 {{/*
+
 Expand the name of the chart.
 */}}
 {{- define "bulklog.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
+Expand the version of the app.
+*/}}
+{{- define "bulklog.appVersion" -}}
+{{- default .Values.image.tag .Values.appVersionOverride -}}
 {{- end -}}
 
 {{/*

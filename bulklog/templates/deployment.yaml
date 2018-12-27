@@ -4,20 +4,41 @@ metadata:
   name: {{ include "bulklog.fullname" . }}
   labels:
     app.kubernetes.io/name: {{ include "bulklog.name" . }}
-    helm.sh/chart: {{ include "bulklog.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ include "bulklog.appVersion" . }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- if .Values.component }}
+    app.kubernetes.io/component: {{ .Values.component }}
+    {{- end}}
+    {{- if .Values.partOf }}
+    app.kubernetes.io/part-of: {{ .Values.partOf }}
+    {{- end}}
+    helm.sh/chart: {{ include "bulklog.chart" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app.kubernetes.io/name: {{ include "bulklog.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/version: {{ include "bulklog.appVersion" . }}
+      {{- if .Values.component }}
+      app.kubernetes.io/component: {{ .Values.component }}
+      {{- end}}
+      {{- if .Values.partOf }}
+      app.kubernetes.io/part-of: {{ .Values.partOf }}
+      {{- end}}
   template:
     metadata:
       labels:
         app.kubernetes.io/name: {{ include "bulklog.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/version: {{ include "bulklog.appVersion" . }}
+        {{- if .Values.component }}
+        app.kubernetes.io/component: {{ .Values.component }}
+        {{- end}}
+        {{- if .Values.partOf }}
+        app.kubernetes.io/part-of: {{ .Values.partOf }}
+        {{- end}}
     spec:
       containers:
         - name: {{ .Chart.Name }}
@@ -25,15 +46,15 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 5000
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /health
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

@@ -7,9 +7,16 @@ metadata:
   name: {{ $fullName }}
   labels:
     app.kubernetes.io/name: {{ include "bulklog.name" . }}
-    helm.sh/chart: {{ include "bulklog.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ include "bulklog.appVersion" . }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- if .Values.component }}
+    app.kubernetes.io/component: {{ .Values.component }}
+    {{- end}}
+    {{- if .Values.partOf }}
+    app.kubernetes.io/part-of: {{ .Values.partOf }}
+    {{- end}}
+    helm.sh/chart: {{ include "bulklog.chart" . }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

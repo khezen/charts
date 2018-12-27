@@ -4,16 +4,23 @@ metadata:
   name: {{ include "bulklog.fullname" . }}
   labels:
     app.kubernetes.io/name: {{ include "bulklog.name" . }}
-    helm.sh/chart: {{ include "bulklog.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ include "bulklog.appVersion" . }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- if .Values.component }}
+    app.kubernetes.io/component: {{ .Values.component }}
+    {{- end}}
+    {{- if .Values.partOf }}
+    app.kubernetes.io/part-of: {{ .Values.partOf }}
+    {{- end}}
+    helm.sh/chart: {{ include "bulklog.chart" . }}
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    - name: http
+      port: {{ .Values.service.port }}
       targetPort: http
       protocol: TCP
-      name: http
   selector:
     app.kubernetes.io/name: {{ include "bulklog.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

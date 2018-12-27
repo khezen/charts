@@ -6,7 +6,14 @@ metadata:
     app.kubernetes.io/name: {{ include "bulklog.name" . }}
     helm.sh/chart: {{ include "bulklog.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ include "bulklog.appVersion" . }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- if .Values.component }}
+    app.kubernetes.io/component: {{ .Values.component }}
+    {{- end}}
+    {{- if .Values.partOf }}
+    app.kubernetes.io/part-of: {{ .Values.partOf }}
+    {{- end}}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -14,5 +21,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "bulklog.fullname" . }}:{{ .Values.service.port }}']
+      args:  ['{{ include "bulklog.fullname" . }}:{{ .Values.service.port }}/health']
   restartPolicy: Never

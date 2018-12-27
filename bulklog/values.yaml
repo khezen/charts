@@ -5,12 +5,15 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  tag: stable
+  repository: khezen/bulklog
+  tag: 1.0.3
   pullPolicy: IfNotPresent
 
 nameOverride: ""
 fullnameOverride: ""
+appVersionOverride: ""
+component: "service"
+partOf: ""
 
 service:
   type: ClusterIP
