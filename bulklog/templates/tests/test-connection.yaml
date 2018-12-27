@@ -4,7 +4,6 @@ metadata:
   name: "{{ include "bulklog.fullname" . }}-test-connection"
   labels:
     app.kubernetes.io/name: {{ include "bulklog.name" . }}
-    helm.sh/chart: {{ include "bulklog.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/version: {{ include "bulklog.appVersion" . }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
@@ -14,6 +13,7 @@ metadata:
     {{- if .Values.partOf }}
     app.kubernetes.io/part-of: {{ .Values.partOf }}
     {{- end}}
+    helm.sh/chart: {{ include "bulklog.chart" . }}
   annotations:
     "helm.sh/hook": test-success
 spec:
