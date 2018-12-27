@@ -37,14 +37,14 @@ ingress:
 
 redis:
   enabled: false
-# endpoint: http://localhost:6379
+# endpoint: http://redis:6379
 # password: changeme
 # db: 0
 
 output: 
   elasticsearch:
     enabled: true
-    endpoint: http://localhost:9200
+    endpoint: http://elasticsearch-client:9200
     shards: 1
   # aws_auth:
   #   access_key_id: changeme
