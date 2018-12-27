@@ -41,7 +41,7 @@ redis:
 # password: changeme
 # db: 0
 
-output: 
+output:
   elasticsearch:
     enabled: true
     endpoint: http://elasticsearch-client:9200
