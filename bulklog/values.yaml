@@ -29,11 +29,11 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   paths: []
   hosts:
-    - chart-example.local
+    - bulklog.local
   tls: []
-  #  - secretName: chart-example-tls
+  #  - secretName: bulklog-tls
   #    hosts:
-  #      - chart-example.local
+  #      - bulklog.local
 
 persistence: |
   enabled: false
