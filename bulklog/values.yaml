@@ -38,14 +38,15 @@ ingress:
 persistence: |
   enabled: false
 # redis: 
-#   endpoint: http://redis:6379
-#   password: changeme
-#   db: 0
+#   endpoint: redis:6379
+#   password: changeme #(optional)
+#   db: 0 #(optional, default: 0)
 
 output: |
   elasticsearch:
     enabled: true
-    endpoint: http://elasticsearch-client:9200
+    endpoint: elasticsearch-client:9200
+    scheme: http
     shards: 1
   # aws_auth:
   #   access_key_id: changeme
