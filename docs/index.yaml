@@ -2,21 +2,12 @@ apiVersion: v1
 entries:
   bulklog:
   - apiVersion: v1
-    created: 2018-12-30T16:43:45.042014398+01:00
+    created: 2018-12-30T17:39:53.560523523+01:00
     description: Collects, buffers, and outputs logs across multiple sources and destinations
-    digest: debb8e50b2a6647ddac321a9f5bb5edbde4c3bd2d3a1417f843a75d8557d4f3e
+    digest: e8cc1704ab1935508170e0cbf6fe2586ed943844f03e0752fb489619e76402b8
     icon: https://github.com/khezen/bulklog/blob/master/icon.png
     name: bulklog
     urls:
     - https://khezen.github.com/charts/bulklog-1.0.0.tgz
     version: 1.0.0
-  - apiVersion: v1
-    created: 2018-12-30T16:43:45.041730563+01:00
-    description: Collects, buffers, and outputs logs across multiple sources and destinations
-    digest: f1e3af915083b913618b914e3ac84eb59544653c5230ca7f51c962fa61d370fd
-    icon: https://github.com/khezen/bulklog/blob/master/icon.png
-    name: bulklog
-    urls:
-    - https://khezen.github.com/charts/bulklog-0.1.0.tgz
-    version: 0.1.0
-generated: 2018-12-30T16:43:45.041311599+01:00
+generated: 2018-12-30T17:39:53.56006874+01:00
