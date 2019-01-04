@@ -44,11 +44,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /v1/liveness
+              path: /liveness
               port: http
           readinessProbe:
             httpGet:
-              path: /v1/readiness
+              path: /readiness
               port: http
           env:
             - name: CONFIG_PATH
