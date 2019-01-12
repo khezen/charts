@@ -2,4 +2,4 @@ apiVersion: v1
 description: Collects, buffers, and outputs logs across multiple sources and destinations
 name: bulklog
 version: 1.0.0
-icon: https://github.com/khezen/bulklog/blob/master/icon.png
+icon: https://github.com/bulklog/bulklog/blob/master/icon.png
