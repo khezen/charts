@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: bulklog/bulklog
-  tag: 1.0.9
+  repository: docker.pkg.github.com/khezen/bulklog/bulklog
+  tag: 2.0.1
   pullPolicy: IfNotPresent
 
 nameOverride: ""
@@ -47,7 +47,6 @@ output: |
     enabled: true
     endpoint: elasticsearch-client:9200
     scheme: http
-    shards: 1
   # aws_auth:
   #   access_key_id: changeme
   #   secret_access_key: changeme
@@ -60,19 +59,20 @@ collections: |
   - name: logs
     flush_period: 5 seconds # hours|minutes|seconds|milliseconds
     retention_period: 45 minutes
+    shards: 5
+    replicas: 1
     schemas:
-      log:
-        source: 
-          type: string
-          max_length: 64
-        stream: 
-          type: string
-          length: 6
-        event: 
-          type: string
-        time:
-          type: datetime
-          date_format: 2006-01-02T15:04:05.999999999Z07:00
+      source: 
+        type: string
+        max_length: 64
+      stream: 
+        type: string
+        length: 6
+      event: 
+        type: string
+      time:
+        type: datetime
+        date_format: 2006-01-02T15:04:05.999999999Z07:00
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious

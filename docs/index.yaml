@@ -2,9 +2,9 @@ apiVersion: v1
 entries:
   bulklog:
   - apiVersion: v1
-    created: 2019-02-22T22:13:52.976846923+01:00
+    created: 2020-04-17T09:24:44.655718324+02:00
     description: Collects, buffers, and outputs logs across multiple sources and destinations
-    digest: aea2ff03fce232c17b893b3790cabd4f0ce1587bb4f561ca0aeaad6e5db3f3e1
+    digest: f41a4b2961f2552ff1e9a636ca9ca4d3cfcf11aca90b164a6ac6c23d8d990491
     icon: https://github.com/bulklog/bulklog/blob/master/icon.png
     name: bulklog
     urls:
@@ -12,7 +12,7 @@ entries:
     version: 1.0.0
   loki:
   - appVersion: 0.0.1
-    created: 2019-02-22T22:13:52.977163157+01:00
+    created: 2020-04-17T09:24:44.656264059+02:00
     description: 'Loki: like Prometheus, but for logs.'
     digest: cc2ea3fde3e6fbe2775f2501f68041bfbfcab4a3a4a7ca7aec06e0a0c686253d
     engine: gotpl
@@ -28,4 +28,4 @@ entries:
     urls:
     - https://khezen.github.com/charts/loki-0.0.1.tgz
     version: 0.0.1
-generated: 2019-02-22T22:13:52.97648011+01:00
+generated: 2020-04-17T09:24:44.655362489+02:00
